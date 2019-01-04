@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 
 //no args since we won't be changing it. fixed data.
 const songsReducer = () => {
@@ -10,13 +12,17 @@ const songsReducer = () => {
 
 
 //dynamic reducer. selectedSong is defaulted to null.
-const selectedSongsReducer = (selectedSong = null, action) => {
-  return {
-    if(action.type === 'SONG_SELECTED') {
+const selectedSongReducer = (selectedSong = null, action) => {
+    if (action.type === 'SONG_SELECTED') {
       return action.payload
     }
       return selectedSong;
   }
-}
+
 
 //NOTE: you only have one type. the if else statement is just in case you ever added types.
+
+export default combineReducers({
+  songs: songsReducer,
+  selectedSong: selectedSong
+})
